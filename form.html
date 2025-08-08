@@ -3,19 +3,127 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Event Registration</title>
   </head>
   <body>
-    <form action="">
-      <label for="Username">Username:</label>
-      <input type="text" id="Username" name="Username" required /><br />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required /><br />
-      <label for="Password">Password:</label>
-      <input type="password" id="Password" name="Password" required /><br />
-      <label for="confirm">Confirm Password:</label>
-      <input type="password" id="confirm" name="confirm" required /><br />
-      <input type="submit" value="submit" />
+    <h2>Event Registration</h2>
+
+    <form id="eventForm">
+      <!-- Full Name -->
+      <label for="fullname">Full Name:</label><br />
+      <input type="text" id="fullname" name="fullname" required /><br /><br />
+
+      <!-- Email -->
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <!-- Phone Number -->
+      <label for="phone">Phone Number (Indian - 10 digits):</label><br />
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        pattern="[6-9]{1}[0-9]{9}"
+        minlength="10"
+        maxlength="10"
+        required
+      /><br /><br />
+
+      <!-- Number of Attendees -->
+      <label for="attendees">Number of Attendees (1 to 10):</label><br />
+      <input
+        type="number"
+        id="attendees"
+        name="attendees"
+        min="1"
+        max="10"
+        required
+      /><br /><br />
+
+      <!-- Event Date -->
+      <label for="event-date">Event Date:</label><br />
+      <input
+        type="date"
+        id="event-date"
+        name="event-date"
+        required
+      /><br /><br />
+
+      <!-- Event Time -->
+      <label for="event-time">Event Time:</label><br />
+      <input
+        type="time"
+        id="event-time"
+        name="event-time"
+        required
+      /><br /><br />
+
+      <!-- Event Type -->
+      <label for="event-type">Event Type:</label><br />
+      <select id="event-type" name="event-type" required>
+        <option value="" disabled selected>Select an event type</option>
+        <option value="conference">Conference</option>
+        <option value="workshop">Workshop</option>
+        <option value="webinar">Webinar</option></select
+      ><br /><br />
+
+      <!-- Dietary Restrictions -->
+      <label>Dietary Restrictions:</label><br />
+      <input type="checkbox" id="vegetarian" name="diet[]" value="Vegetarian" />
+      <label for="vegetarian">Vegetarian</label><br />
+      <input
+        type="checkbox"
+        id="glutenfree"
+        name="diet[]"
+        value="Gluten-Free"
+      />
+      <label for="glutenfree">Gluten-Free</label><br /><br />
+
+      <!-- T-shirt Size -->
+      <label>T-shirt Size:</label><br />
+      <input type="radio" id="size-s" name="tshirt" value="S" required />
+      <label for="size-s">S</label>
+      <input type="radio" id="size-m" name="tshirt" value="M" />
+      <label for="size-m">M</label>
+      <input type="radio" id="size-l" name="tshirt" value="L" />
+      <label for="size-l">L</label>
+      <input type="radio" id="size-xl" name="tshirt" value="XL" />
+      <label for="size-xl">XL</label><br /><br />
+
+      <!-- Comments/Questions -->
+      <label for="comments">Comments/Questions (max 250 characters):</label
+      ><br />
+      <textarea
+        id="comments"
+        name="comments"
+        maxlength="250"
+        rows="4"
+        cols="40"
+      ></textarea
+      ><br /><br />
+
+      <!-- Submit Button -->
+      <button type="submit">Submit</button>
     </form>
+
+    <!-- JavaScript Validation and Submission -->
+    <script>
+      // Set today's date as min for event date
+      document.getElementById("event-date").min = new Date()
+        .toISOString()
+        .split("T")[0];
+
+      document
+        .getElementById("eventForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent real submission
+
+          // Optional: display form values or do further JS validation
+          alert("Form submitted successfully!"); // Replace with your logic (like sending data via fetch)
+
+          // You can also reset the form if needed
+          this.reset();
+        });
+    </script>
   </body>
 </html>
