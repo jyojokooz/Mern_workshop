@@ -1,0 +1,10 @@
+#favcolor {
+  text-decoration: underline;
+  color: rgb(246, 255, 0);
+}
+.para-align {
+  text-align: center;
+}
+nav ul li {
+  list-style-type: none;
+}
